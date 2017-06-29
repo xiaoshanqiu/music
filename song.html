@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<script src="ajax.js"></script>
+<style>
+	body{
+		margin: 0;
+	}
+	.wrapper{
+		width: 1000px;
+		margin: 0 auto;
+	}
+	#top{
+		width: 300px;
+		margin: 30px  auto ;
+	}
+	ul{
+		font-size: 0;
+	}
+	ul li{
+		display: inline-block;
+		width: 200px;
+		margin: 20px;
+		list-style: none;
+	}
+	ul li img{
+		width: 100%;
+	}
+</style>
+<script>
+	window.onload = function(){
+		var obtn = document.getElementById('btn');
+		var oul = document.getElementById('ul');
+
+		obtn.onclick = function(){
+			if(song.value == ''){
+				alert("没有这首歌")
+				return false;
+			}
+			ajaz({
+				type:'get',
+				url:'https://api.imjad.cn/cloudmusic/?type=search&s='+song.value,
+				why:true,
+				success:function(data){
+					oul.innerHTML = '';
+					for(var i = 0;i<data.result.songs.length;i++){
+						var li = document.createElement('li');
+						var oimg = document.createElement('img');
+						oimg.setAttribute('src',data.result.songs[i].al.picUrl);
+						oimg.setAttribute('data-id',data.result.songs[i].mv);
+						li.appendChild(oimg);
+						oul.appendChild(li);
+					}
+				}
+			})
+		}
+
+		// oul.onclick = function(e){
+		// 	var oevent = e || window.event;
+		// 	var target = oevent.srcElement || oevent.target;
+
+		// 	if(target.nodeName.toLowerCase() == 'img'){
+		// 		ajaz({
+		// 			type:'get',
+		// 			url:'https://api.imjad.cn/cloudmusic/?type=song&id='+target.getAttribute('data-id')+'&br=128000',
+		// 			why:true,
+		// 			success:function(data){
+		// 				var oplay = document.getElementById('play');
+		// 				oplay.setAttribute('src',data.data[0].url);
+		// 			}
+		// 		});
+		// 	}
+		// }
+		oul.onclick = function(e){
+			var oevent = e || window.event;
+			var target = oevent.srcElement || oevent.target;
+
+			if(target.nodeName.toLowerCase() == 'img'){
+				ajaz({
+					type:'get',
+					url:'https://api.imjad.cn/cloudmusic/?type=mv&id='+target.getAttribute('data-id'),
+					why:true,
+					success:function(data){
+						var ovio = document.getElementById('vio');
+						ovio.setAttribute('src',data.data.brs['480']);
+					}
+				});
+			}
+		}
+	}
+</script>
+<body>
+	<div class="box wrapper">
+		<div id="top">
+			<input type="text" id="song"/>
+			<button id="btn">搜索</button><br/>
+		</div>
+			<video id="vio" src="" autobuffer="" autoloop loop controls=""></video>
+			<!-- <audio id="play" src="" controls="" autoplay=""></audio> -->
+		<ul id="ul">
+			<li>
+				<img src="1.jpg" alt="" />
+			</li>
+			<li>
+				<img src="1.jpg" alt="" />
+			</li>
+			<li>
+				<img src="1.jpg" alt="" />
+			</li>
+			<li>
+				<img src="1.jpg" alt="" />
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
