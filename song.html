@@ -57,23 +57,6 @@
 				}
 			})
 		}
-
-		// oul.onclick = function(e){
-		// 	var oevent = e || window.event;
-		// 	var target = oevent.srcElement || oevent.target;
-
-		// 	if(target.nodeName.toLowerCase() == 'img'){
-		// 		ajaz({
-		// 			type:'get',
-		// 			url:'https://api.imjad.cn/cloudmusic/?type=song&id='+target.getAttribute('data-id')+'&br=128000',
-		// 			why:true,
-		// 			success:function(data){
-		// 				var oplay = document.getElementById('play');
-		// 				oplay.setAttribute('src',data.data[0].url);
-		// 			}
-		// 		});
-		// 	}
-		// }
 		oul.onclick = function(e){
 			var oevent = e || window.event;
 			var target = oevent.srcElement || oevent.target;
@@ -99,19 +82,18 @@
 			<button id="btn">搜索</button><br/>
 		</div>
 			<video id="vio" src="" autobuffer="" autoloop loop controls=""></video>
-			<!-- <audio id="play" src="" controls="" autoplay=""></audio> -->
 		<ul id="ul">
 			<li>
-				<img src="1.jpg" alt="" />
+				<img src="image/top3.jpg" alt="" />
 			</li>
 			<li>
-				<img src="1.jpg" alt="" />
+				<img src="image/top3.jpg" alt="" />
 			</li>
 			<li>
-				<img src="1.jpg" alt="" />
+				<img src="image/top3.jpg" alt="" />
 			</li>
 			<li>
-				<img src="1.jpg" alt="" />
+				<img src="image/top3.jpg" alt="" />
 			</li>
 		</ul>
 	</div>
